@@ -19,7 +19,7 @@ Follow these instructions to set up the project in your local development enviro
 - Python
 - Ruff
 
-### Installation
+### Development Setup
 
 1. **Clone the repository**:
 
@@ -36,6 +36,12 @@ Follow these instructions to set up the project in your local development enviro
    pip install -r requirements.txt
    ```
 
+4. **Run the database and adminer**:
+
+   ```bash
+   docker compose up # with `-d` for detached mode (background - with no logs in terminal)
+   ```
+
 ### Scripts
 
 - running the app:
@@ -49,3 +55,11 @@ Follow these instructions to set up the project in your local development enviro
   ```bash
   pip freeze > requirements.txt
   ```
+
+### Development Database
+
+- on localhost:5432
+- adminer on localhost:8080
+- username: postgres
+- password: postgres
+- database: postgres
