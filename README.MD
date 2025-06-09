@@ -19,7 +19,7 @@ Follow these instructions to set up the project in your local development enviro
 - Python
 - Ruff
 
-### Development Setup
+### Installation
 
 1. **Clone the repository**:
 
@@ -42,12 +42,12 @@ Follow these instructions to set up the project in your local development enviro
    docker compose up # with `-d` for detached mode (background - with no logs in terminal)
    ```
 
-### Scripts
+## Scripts
 
 - running the app:
 
   ```bash
-  flask run # with `--debug` for debug mode
+  flask run # with `--debug` for debug mode (flask debug mode can be also set in .env file (FLASK_DEBUG))
   ```
 
 - updating dependencies:
@@ -56,10 +56,14 @@ Follow these instructions to set up the project in your local development enviro
   pip freeze > requirements.txt
   ```
 
-### Development Database
+## Development Database
 
 - on localhost:5432
 - adminer on localhost:8080
 - username: postgres
 - password: postgres
 - database: postgres
+
+## License
+
+[MIT](LICENSE)
