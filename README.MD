@@ -21,7 +21,7 @@ Follow these instructions to set up the project in your local development enviro
 
 ### Installation
 
-1. **Clone the repository**:
+1. **Clone the repository**
 
 2. **Set up the virtual environment**:
 
