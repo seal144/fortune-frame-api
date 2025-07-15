@@ -1,6 +1,8 @@
 import enum
+import uuid
 
-from sqlalchemy import DateTime, Enum, Float, Integer, String
+from sqlalchemy import Column, DateTime, Enum, Float, ForeignKey, Integer, String
+from sqlalchemy.dialects.postgresql import UUID
 
 from core import database as db
 
@@ -12,51 +14,50 @@ class CurrencyTypeEnum(enum.Enum):
 
 
 class User(db.Model):
-    __tablename__ = "users"
+    __tablename__ = "user"
 
-    id = db.Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
+    uuid = Column(UUID(as_uuid=True), nullable=False, unique=True, default=uuid.uuid4)
 
     def __repr__(self):
         return f"User: {self.id}"
 
 
-class currency_type(db.Model):
+class CurrencyType(db.Model):
     __tablename__ = "currency_type"
 
-    id = db.Column(Integer, primary_key=True)
-    name = db.Column(Enum(CurrencyTypeEnum), nullable=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(Enum(CurrencyTypeEnum), nullable=False)
 
     def __repr__(self):
         return f"CurrencyType: {self.name}"
 
 
-class currency(db.Model):
+class Currency(db.Model):
     __tablename__ = "currency"
 
-    id = db.Column(Integer, primary_key=True)
-    name = db.Column(String(200), nullable=False)
-    code = db.Column(String(5), nullable=False)
-    multiplier = db.Column(Float, nullable=False)
-    currency_type = db.Column(
-        Integer, db.ForeignKey("currency_type.id"), nullable=False
-    )
-    parent = db.Column(Integer, db.ForeignKey("currency.id"))
+    id = Column(Integer, primary_key=True)
+    name = Column(String(200), nullable=False)
+    code = Column(String(5), nullable=False)
+    multiplier = Column(Float, nullable=False)
+    currency_type = Column(Integer, ForeignKey("currency_type.id"), nullable=False)
+    parent = Column(Integer, ForeignKey("currency.id"))
 
     def __repr__(self):
         return f"currency: {self.name}"
 
 
-class asset(db.Model):
+class Asset(db.Model):
     __tablename__ = "asset"
 
-    id = db.Column(Integer, primary_key=True)
-    value = db.Column(Float, nullable=False)
-    created_at = db.Column(DateTime, nullable=False)
-    updated_at = db.Column(DateTime)
-    order = db.Column(Integer)
-    currency = db.Column(Integer, db.ForeignKey("currency.id"), nullable=False)
-    user = db.Column(Integer, db.ForeignKey("users.id"), nullable=False)
-    note = db.Column(String(200))
+    id = Column(Integer, primary_key=True)
+    value = Column(Float, nullable=False)
+    created_at = Column(DateTime, nullable=False)
+    updated_at = Column(DateTime)
+    order = Column(Integer)
+    currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
+    user = Column(Integer, ForeignKey("users.id"), nullable=False)
+    note = Column(String(200))
 
     currency_rel = db.relationship("currency", backref="assets")
 
