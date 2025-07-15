@@ -42,6 +42,8 @@ Follow these instructions to set up the project in your local development enviro
    docker compose up # with `-d` for detached mode (background - with no logs in terminal)
    ```
 
+   - on windows there might be a problem with running .sh files (`db-setup.sh: cannot execute: required file not found`), related to CRLF line endings, the `git config --global core.autocrlf true` might not work, the simplest solution is to create the .sh files and copy the content from the original files.
+
 ## Scripts
 
 - running the app:
