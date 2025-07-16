@@ -56,7 +56,7 @@ class Asset(db.Model):
     updated_at = Column(DateTime)
     order = Column(Integer)
     currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
-    user = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user = Column(Integer, ForeignKey("user.id"), nullable=False)
     note = Column(String(200))
 
     currency_rel = db.relationship("currency", backref="assets")
