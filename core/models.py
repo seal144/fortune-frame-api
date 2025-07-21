@@ -39,7 +39,7 @@ class Currency(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), nullable=False)
     code = Column(String(5), nullable=False)
-    multiplier = Column(Float, nullable=False)
+    multiplier = Column(Float)
     currency_type = Column(Integer, ForeignKey("currency_type.id"), nullable=False)
     parent = Column(Integer, ForeignKey("currency.id"))
 
