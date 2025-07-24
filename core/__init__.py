@@ -1,6 +1,6 @@
 import os
 
-from apifairy import ApiFairy
+from apifairy import APIFairy
 from dotenv import load_dotenv
 from flask import Flask
 from flask_marshmallow import Marshmallow
@@ -15,7 +15,7 @@ db_migration = Migrate()
 
 ma = Marshmallow()
 
-apifairy = ApiFairy()
+apifairy = APIFairy()
 
 
 def create_app(config_type=os.getenv("CONFIG_TYPE")):

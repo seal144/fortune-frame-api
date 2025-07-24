@@ -59,7 +59,7 @@ class Asset(db.Model):
     user = Column(Integer, ForeignKey("user.id"), nullable=False)
     note = Column(String(200))
 
-    currency_rel = db.relationship("currency", backref="assets")
+    currency_rel = db.relationship("Currency", backref="assets")
 
     def __repr__(self):
         return f"asset: {self.value} {self.currency_rel.name if self.currency_rel else 'Unknown'}"
