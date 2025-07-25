@@ -23,6 +23,10 @@ class DevelopmentConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = url_object
 
+    APIFAIRY_TITLE = "Fortune Frame API"
+    APIFAIRY_UI = "/swagger_ui"
+    APIFAIRY_VERSION = "1.0.0"
+
 
 class ProductionConfig(Config):
     FLASK_ENV = "production"

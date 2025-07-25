@@ -64,7 +64,11 @@ Follow these instructions to set up the project in your local development enviro
 - adminer on localhost:8080
 - username: postgres
 - password: postgres
-- database: postgres
+- database: fortune_frame
+
+## API Documentation
+
+- http://localhost:5000/docs
 
 ## License
 
