@@ -10,6 +10,10 @@
 
 `flask db migrate -m "initial migration"`
 
+### Generate a migration
+
+`flask db revision -m "migration message"`
+
 ### Apply migrations
 
 `flask db upgrade`
