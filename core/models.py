@@ -1,7 +1,7 @@
 import enum
 import uuid
 
-from sqlalchemy import Column, DateTime, Enum, Float, ForeignKey, Integer, String
+from sqlalchemy import Column, Date, DateTime, Enum, Float, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
 
 from core import database as db
@@ -62,3 +62,17 @@ class Asset(db.Model):
 
     def __repr__(self):
         return f"asset: {self.value} {self.currency_rel.name if self.currency_rel else 'Unknown'}"
+
+
+class ExchangeRate(db.Model):
+    __tablename__ = "exchange_rate"
+
+    id = Column(Integer, primary_key=True)
+    mid = Column(Float, nullable=False)
+    currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
+    date = Column(Date, nullable=False)
+
+    currency_rel = db.relationship("Currency", backref="exchange_rates")
+
+    def __repr__(self):
+        return f"exchange_rate: {self.mid} {self.currency_rel.name if self.currency_rel else 'Unknown'} {self.date}"

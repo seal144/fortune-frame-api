@@ -1,8 +1,8 @@
-"""populate currency_type table
+"""populate_currency_type_table
 
-Revision ID: b6f839a70933
-Revises: 08b6910a7c9c
-Create Date: 2025-09-14 10:58:45.752606
+Revision ID: 813b53900231
+Revises: 6517c69348a8
+Create Date: 2025-09-18 09:09:07.260484
 
 """
 
@@ -12,8 +12,8 @@ from alembic import op
 from core.models import CurrencyTypeEnum
 
 # revision identifiers, used by Alembic.
-revision = "b6f839a70933"
-down_revision = "08b6910a7c9c"
+revision = "813b53900231"
+down_revision = "6517c69348a8"
 branch_labels = None
 depends_on = None
 

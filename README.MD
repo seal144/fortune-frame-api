@@ -70,6 +70,10 @@ Follow these instructions to set up the project in your local development enviro
 
 - http://localhost:5000/docs
 
+## Used exchange rate apis
+
+- https://api.nbp.pl/en.html
+
 ## License
 
 [MIT](LICENSE)
