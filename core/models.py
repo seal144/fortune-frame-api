@@ -8,9 +8,9 @@ from core import database as db
 
 
 class CurrencyTypeEnum(enum.Enum):
-    FIAT = "fiat"
-    CRYPTO = "crypto"
-    METAL = "metal"
+    FIAT = "FIAT"
+    CRYPTO = "CRYPTO"
+    METAL = "METAL"
 
 
 class User(db.Model):
