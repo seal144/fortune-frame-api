@@ -27,7 +27,7 @@ class CurrencyType(db.Model):
     __tablename__ = "currency_type"
 
     id = Column(Integer, primary_key=True)
-    name = Column(Enum(CurrencyTypeEnum), nullable=False)
+    name = Column(Enum(CurrencyTypeEnum), nullable=False, unique=True)
 
     def __repr__(self):
         return f"CurrencyType: {self.name}"
