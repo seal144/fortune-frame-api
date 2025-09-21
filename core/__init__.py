@@ -43,6 +43,7 @@ def initialize_extensions(app):
 
 
 def register_blueprints(app):
-    from core.api import currency_type_api_blueprint
+    from core.api import currency_api_blueprint, currency_type_api_blueprint
 
     app.register_blueprint(currency_type_api_blueprint, url_prefix="/api")
+    app.register_blueprint(currency_api_blueprint, url_prefix="/api")

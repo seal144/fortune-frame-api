@@ -43,6 +43,8 @@ class Currency(db.Model):
     currency_type = Column(Integer, ForeignKey("currency_type.id"), nullable=False)
     parent = Column(Integer, ForeignKey("currency.id"))
 
+    currency_type_rel = db.relationship("CurrencyType", backref="currencies")
+
     def __repr__(self):
         return f"currency: {self.name}"
 
