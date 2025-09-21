@@ -1,8 +1,8 @@
-"""populate_curency_fiat
+"""populate currency
 
-Revision ID: 8f365cbd9197
-Revises: 813b53900231
-Create Date: 2025-09-20 09:45:58.582933
+Revision ID: 96ac5ff4717c
+Revises: 01e19fce364d
+Create Date: 2025-09-21 15:14:01.164308
 
 """
 
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision = "8f365cbd9197"
-down_revision = "813b53900231"
+revision = "96ac5ff4717c"
+down_revision = "01e19fce364d"
 branch_labels = None
 depends_on = None
 
@@ -52,6 +52,7 @@ def upgrade():
             {"name": "New Zealand Dollar", "code": "NZD", "currency_type": 1},
             {"name": "Philippine Peso", "code": "PHP", "currency_type": 1},
             {"name": "Romanian Leu", "code": "RON", "currency_type": 1},
+            {"name": "Polish Złoty", "code": "PLN", "currency_type": 1},
             {"name": "Singapore Dollar", "code": "SGD", "currency_type": 1},
             {"name": "Swedish Krona", "code": "SEK", "currency_type": 1},
             {"name": "Swiss Franc", "code": "CHF", "currency_type": 1},

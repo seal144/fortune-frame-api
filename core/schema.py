@@ -10,3 +10,11 @@ class CurrencyGetSchema(ma.Schema):
     currency_type = ma.Enum(CurrencyTypeEnum, attribute="currency_type_rel.name")
     multiplier = ma.Float()
     parent = ma.Integer()
+
+
+class AssetSchema(ma.Schema):
+    id = ma.Integer(dump_only=True)
+    value = ma.Float(required=True)
+    order = ma.Integer(allow_none=True)
+    currency = ma.Integer(required=True)
+    note = ma.String(allow_none=True)

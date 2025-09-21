@@ -1,7 +1,17 @@
 import enum
 import uuid
 
-from sqlalchemy import Column, Date, DateTime, Enum, Float, ForeignKey, Integer, String
+from sqlalchemy import (
+    Column,
+    Date,
+    DateTime,
+    Enum,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    func,
+)
 from sqlalchemy.dialects.postgresql import UUID
 
 from core import database as db
@@ -54,8 +64,8 @@ class Asset(db.Model):
 
     id = Column(Integer, primary_key=True)
     value = Column(Float, nullable=False)
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime)
+    created_at = Column(DateTime, nullable=False, default=func.now())
+    updated_at = Column(DateTime, onupdate=func.now())
     order = Column(Integer)
     currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
     note = Column(String(200))

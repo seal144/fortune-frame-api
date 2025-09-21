@@ -6,7 +6,7 @@
 
 `flask db init`
 
-### Generate an initial migration
+### Generate an initial migration or generate migration on model change
 
 `flask db migrate -m "initial migration"`
 
