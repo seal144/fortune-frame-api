@@ -18,3 +18,10 @@ class AssetSchema(ma.Schema):
     order = ma.Integer(allow_none=True)
     currency = ma.Integer(required=True)
     note = ma.String(allow_none=True)
+
+
+class AssetPatchSchema(ma.Schema):
+    value = ma.Float(required=False)
+    order = ma.Integer(required=False)
+    currency = ma.Integer(required=False)
+    note = ma.String(required=False, allow_none=True)
