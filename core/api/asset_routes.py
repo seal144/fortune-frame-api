@@ -37,3 +37,13 @@ def patch_asset(kwargs, asset_id):
         setattr(asset, key, value)
     database.session.commit()
     return asset
+
+
+@asset_api_blueprint.route("/assets/<int:asset_id>", methods=["DELETE"])
+@response(asset_schema)
+def delete_asset(asset_id):
+    # TODO - add custom error handling after FE implementation
+    asset = Asset.query.get_or_404(asset_id)
+    database.session.delete(asset)
+    database.session.commit()
+    return asset
