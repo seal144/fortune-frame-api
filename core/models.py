@@ -72,6 +72,10 @@ class Asset(db.Model):
 
     currency_rel = db.relationship("Currency", backref="assets")
 
+    @property
+    def currency_code(self):
+        return self.currency_rel.code
+
     def __repr__(self):
         return f"asset: {self.value} {self.currency_rel.name if self.currency_rel else 'Unknown'}"
 

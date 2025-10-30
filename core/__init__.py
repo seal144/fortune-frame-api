@@ -3,6 +3,7 @@ import os
 from apifairy import APIFairy
 from dotenv import load_dotenv
 from flask import Flask
+from flask_cors import CORS
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -38,6 +39,8 @@ def initialize_extensions(app):
     ma.init_app(app)
 
     apifairy.init_app(app)
+
+    CORS(app, origins=app.config.get("CORS_ORIGINS"))
 
     import core.models  # noqa: F401
 

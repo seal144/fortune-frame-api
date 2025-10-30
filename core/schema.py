@@ -18,6 +18,7 @@ class AssetSchema(ma.Schema):
     order = ma.Integer(allow_none=True)
     currency = ma.Integer(required=True)
     note = ma.String(allow_none=True)
+    currency_code = ma.String(dump_only=True)
 
 
 class AssetPatchSchema(ma.Schema):
