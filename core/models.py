@@ -76,6 +76,10 @@ class Asset(db.Model):
     def currency_code(self):
         return self.currency_rel.code
 
+    @property
+    def currency_name(self):
+        return self.currency_rel.name
+
     def __repr__(self):
         return f"asset: {self.value} {self.currency_rel.name if self.currency_rel else 'Unknown'}"
 

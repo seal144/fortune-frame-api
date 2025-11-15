@@ -16,9 +16,9 @@ class AssetSchema(ma.Schema):
     id = ma.Integer(dump_only=True)
     value = ma.Float(required=True)
     order = ma.Integer(allow_none=True)
-    currency = ma.Integer(required=True)
     note = ma.String(allow_none=True)
     currency_code = ma.String(dump_only=True)
+    currency_name = ma.String(dump_only=True)
 
 
 class AssetPatchSchema(ma.Schema):
