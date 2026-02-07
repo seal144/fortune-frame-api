@@ -1,9 +1,14 @@
+from marshmallow import validate
+
 from core import ma
 from core.models import CurrencyTypeEnum
 
 
-# only get needed for the currencies
-class CurrencyGetSchema(ma.Schema):
+class ResponseWithErrorSchema(ma.Schema):
+    error = ma.String(allow_none=True)
+
+
+class CurrencyResponseSchema(ResponseWithErrorSchema):
     id = ma.Integer()
     name = ma.String()
     code = ma.String()
@@ -12,6 +17,8 @@ class CurrencyGetSchema(ma.Schema):
     parent = ma.Integer()
 
 
+# TODO - crete different schem a for asset post and response, and update other schemas to be splitted and uses the ResponseWithErrorSchema as base if needed (all routes that require auth can have error field)
+# TODO - add currency id to the asset schema
 class AssetSchema(ma.Schema):
     id = ma.Integer(dump_only=True)
     value = ma.Float(required=True)
@@ -26,3 +33,17 @@ class AssetPatchSchema(ma.Schema):
     order = ma.Integer(required=False)
     currency = ma.Integer(required=False)
     note = ma.String(required=False, allow_none=True)
+
+
+class UserLoginSchema(ma.Schema):
+    email = ma.String(required=True, validate=validate.Email())
+    password = ma.String(required=True, validate=validate.Length(min=6))
+
+
+class UserResponseSchema(ResponseWithErrorSchema):
+    email = ma.String()
+    uuid = ma.String(attribute="uuid")
+
+
+class TokenResponseSchema(ResponseWithErrorSchema):
+    token = ma.String()

@@ -9,6 +9,10 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY")
     FLASK_ENV = os.getenv("FLASK_ENV")
 
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", os.getenv("SECRET_KEY"))
+    JWT_ALGORITHM = "HS256"
+    JWT_EXPIRATION_DELTA = 30 * 24 * 60 * 60  # 30 days in seconds
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

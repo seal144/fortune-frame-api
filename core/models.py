@@ -28,9 +28,12 @@ class User(db.Model):
 
     id = Column(Integer, primary_key=True)
     uuid = Column(UUID(as_uuid=True), nullable=False, unique=True, default=uuid.uuid4)
+    email = Column(String(255), nullable=False, unique=True, index=True)
+    password_hash = Column(String(255), nullable=False)
+    created_at = Column(DateTime, nullable=False, default=func.now())
 
     def __repr__(self):
-        return f"User: {self.id}"
+        return f"User: {self.id} - {self.email}"
 
 
 class CurrencyType(db.Model):
@@ -54,6 +57,7 @@ class Currency(db.Model):
     parent = Column(Integer, ForeignKey("currency.id"))
 
     currency_type_rel = db.relationship("CurrencyType", backref="currencies")
+    parent_rel = db.relationship("Currency", remote_side=[id], backref="children")
 
     def __repr__(self):
         return f"currency: {self.name}"
@@ -69,8 +73,10 @@ class Asset(db.Model):
     order = Column(Integer)
     currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
     note = Column(String(200))
+    user_id = Column(Integer, ForeignKey("user.id"), nullable=False, index=True)
 
     currency_rel = db.relationship("Currency", backref="assets")
+    user_rel = db.relationship("User", backref="assets")
 
     @property
     def currency_code(self):
