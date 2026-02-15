@@ -53,8 +53,8 @@ class Currency(db.Model):
     name = Column(String(200), nullable=False)
     code = Column(String(5), nullable=False)
     multiplier = Column(Float)
-    currency_type = Column(Integer, ForeignKey("currency_type.id"), nullable=False)
-    parent = Column(Integer, ForeignKey("currency.id"))
+    currency_type_id = Column(Integer, ForeignKey("currency_type.id"), nullable=False)
+    parent_id = Column(Integer, ForeignKey("currency.id"))
 
     currency_type_rel = db.relationship("CurrencyType", backref="currencies")
     parent_rel = db.relationship("Currency", remote_side=[id], backref="children")
@@ -71,7 +71,7 @@ class Asset(db.Model):
     created_at = Column(DateTime, nullable=False, default=func.now())
     updated_at = Column(DateTime, onupdate=func.now())
     order = Column(Integer)
-    currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
+    currency_id = Column(Integer, ForeignKey("currency.id"), nullable=False)
     note = Column(String(200))
     user_id = Column(Integer, ForeignKey("user.id"), nullable=False, index=True)
 
@@ -95,7 +95,7 @@ class ExchangeRate(db.Model):
 
     id = Column(Integer, primary_key=True)
     mid = Column(Float, nullable=False)
-    currency = Column(Integer, ForeignKey("currency.id"), nullable=False)
+    currency_id = Column(Integer, ForeignKey("currency.id"), nullable=False)
     date = Column(Date, nullable=False)
 
     currency_rel = db.relationship("Currency", backref="exchange_rates")
