@@ -17,22 +17,27 @@ class CurrencyResponseSchema(ResponseWithErrorSchema):
     parent = ma.Integer()
 
 
-# TODO - crete different schem a for asset post and response, and update other schemas to be splitted and uses the ResponseWithErrorSchema as base if needed (all routes that require auth can have error field)
-# TODO - add currency id to the asset schema
-class AssetSchema(ma.Schema):
-    id = ma.Integer(dump_only=True)
-    value = ma.Float(required=True)
+class AssetResponseSchema(ResponseWithErrorSchema):
+    id = ma.Integer()
+    value = ma.Float()
     order = ma.Integer(allow_none=True)
     note = ma.String(allow_none=True)
-    currency_code = ma.String(dump_only=True)
-    currency_name = ma.String(dump_only=True)
+    currency_id = ma.Integer()
+    currency_code = ma.String()
+    currency_name = ma.String()
+
+
+class AssetPostSchema(ma.Schema):
+    value = ma.Float(required=True)
+    currency_id = ma.Integer(required=True)
+    note = ma.String(required=False, allow_none=True)
 
 
 class AssetPatchSchema(ma.Schema):
     value = ma.Float(required=False)
-    order = ma.Integer(required=False)
-    currency = ma.Integer(required=False)
+    currency_id = ma.Integer(required=False)
     note = ma.String(required=False, allow_none=True)
+    order = ma.Integer(required=False)
 
 
 class UserLoginSchema(ma.Schema):
